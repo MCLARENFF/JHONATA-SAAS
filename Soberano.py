@@ -61,8 +61,9 @@ def handle_docs(message):
             
             texto = texto[:4000]
             
+            # 🔥 AQUI ESTÁ A CORREÇÃO: MUDAMOS PARA O MODELO 1.5 QUE ESTÁ LIBERADO!
             res = client.models.generate_content(
-                model="gemini-2.0-flash",
+                model="gemini-1.5-flash",
                 contents=f"Auditora Jurídica: Analise este contrato. Diga 'STATUS: 🔴 ALTO RISCO' ou 'STATUS: 🟢 BAIXO RISCO' e dê 3 motivos curtos: {texto}"
             )
             bot.edit_message_text(chat_id=message.chat.id, message_id=msg.message_id, text=f"⚖️ *VEREDITO:*\n\n{res.text}", parse_mode='Markdown')
@@ -75,7 +76,7 @@ def handle_docs(message):
 # 🚀 3. DISPARO DO SISTEMA COM RECONEXÃO AUTOMÁTICA
 if __name__ == "__main__":
     threading.Thread(target=run_flask, daemon=True).start()
-    print("🚀 SOBERANO CLOUD V31 BLINDADO ONLINE!")
+    print("🚀 SOBERANO CLOUD V32 ONLINE!")
     
     while True:
         try:
