@@ -25,9 +25,23 @@ GEMINI_KEY = os.environ.get("GEMINI_KEY")
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 client = genai.Client(api_key=GEMINI_KEY)
 
+# 💎 NOVA MENSAGEM VIP DE BOAS-VINDAS
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "⚖️ *Soberano Auditor Online!*\nEnvie o PDF para análise.", parse_mode='Markdown')
+    mensagem_vip = """
+🏛️ *BEM-VINDO AO SOBERANO AI* 🏛️
+_O seu Auditor Jurídico de Bolso._
+
+Eu sou uma inteligência artificial treinada para ler, analisar e encontrar riscos ocultos em contratos.
+
+*Como usar:*
+1️⃣ Envie um documento em formato *PDF*.
+2️⃣ Aguarde alguns segundos.
+3️⃣ Receba o Veredito (🔴 Alto Risco ou 🟢 Baixo Risco) com 3 pontos de atenção.
+
+🚨 *Aguardando o seu arquivo...*
+"""
+    bot.reply_to(message, mensagem_vip, parse_mode='Markdown')
 
 @bot.message_handler(content_types=['document'])
 def handle_docs(message):
@@ -57,6 +71,6 @@ def handle_docs(message):
 if __name__ == "__main__":
     # Inicia o servidor web em uma linha separada (Thread)
     threading.Thread(target=run_flask, daemon=True).start()
-    print("🚀 SOBERANO CLOUD V29 ONLINE!")
+    print("🚀 SOBERANO CLOUD V30 VIP ONLINE!")
     # Inicia o bot do Telegram
     bot.infinity_polling()
